@@ -1,0 +1,60 @@
+﻿﻿
+@{
+    ViewData["Title"] = "Travel";
+}
+
+<h1>作業二：讀取旅遊資訊</h1>
+
+<div class="container">
+    <div class="container row  justify-content-center" id="divCardDisplay">
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script src="~/datas/travel.js"></script>
+    <script>
+        const card = document.querySelector('#divCardDisplay')
+        const datas = spots.CommonFormat.Section.map(viewspot => {
+            const img = viewspot.file.img[0]           
+            const title = viewspot.stitle
+            const content = viewspot.xbody.substring(0, 50) + '...'
+            const imgUrl = (img == null) ? viewspot.file.img.text : img.text
+            let url = viewspot.xurl
+            if (url == null)
+            {
+                return `
+                                <div class="card m-1 col-3">
+                                 <img class="card-img-top" src="${imgUrl}" alt="Card image cap">
+                                             <div class="card" style="width: 18rem;">
+                                        <h4 class="card-title">${title}</h5>
+                                        <p class="card-text">${content}</p>
+                                     </div>
+                                </div>
+                            `
+            }
+            else {
+                return `
+                                        <div class="card m-1 col-3">
+                                         <img class="card-img-top" src="${imgUrl}" alt="Card image cap">
+                                                     <div class="card" style="width: 18rem;">
+                                                <h4 class="card-title">${title}</h5>
+                                                <p class="card-text">${content}</p>
+                                                <a href="${url}" class="btn btn-primary">網址</a>
+                                             </div>
+                                        </div>
+                                    `
+            }
+
+        })
+
+        card.innerHTML = datas.join("")
+
+
+    </script>
+}
+
+@section Styles{
+
+}

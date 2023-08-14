@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "Cities";
+}
+
+<h1>作業三 檢查帳號是否存在</h1>
+<h3>
+    I. 在Register.cshtml中，使用者輸入姓名離開後，透過Ajax技術將姓名送到api/CheckAccount Action</br>
+    II. 在 CheckAccount Action 中檢查帳號是否存在，將檢查結果回傳給Client端顯示
+</h3>
+
+<div class="form-group">
+    <label for="exampleFormControlSelect1">Example select</label>
+    <select class="form-control my-5" id="CitySelect">
+    </select>
+    <span class="alert alert-info" id="display"></span>
+
+</div>
+
+
+@section Scripts{
+
+    <script>
+        const cities = ["臺北市","新北市","基隆市","新竹市","桃園市","新竹縣","宜蘭縣","臺中市","苗栗縣","彰化縣","南投縣","雲林縣","高雄市","臺南市","嘉義市","嘉義縣","屏東縣","澎湖縣","花蓮縣","臺東縣","金門縣"
+       ,"連江縣"]
+        const citySelect = document.querySelector('#CitySelect')
+        function loadCity() {
+            const datas = cities.map(city => `<option value='${city}'>${city}</option>`)
+            citySelect.innerHTML = datas.join("");
+        }
+
+
+        const display = document.querySelector('#display')
+        citySelect.addEventListener('change', () => {
+            display.textContent = `${citySelect.value}`
+        })
+
+        function show() {
+            theDiv.textContent = `${citySelect.value}`;
+        }
+
+
+        loadCity();
+
+    </script>
+}
+
+@section Styles{
+
+}
+
