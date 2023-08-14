@@ -30,5 +30,13 @@ namespace MSIT150Site.Homework
             return View();
         
         }
+
+        public IActionResult PicturePreview() 
+        {
+            // 作業五
+            return View();
+        
+        }
+
     }
 }
